@@ -1,0 +1,23 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.btn-facebook {
+  color:#FFF;
+  background-color:rgb(72, 98, 163);
+}
+
+.btn-twitter {
+  color:#FFF;
+  background-color:rgb(85, 172, 238);
+}
+
+.btn-google {
+  color:#FFF;  
+  background-color:rgb(221, 75, 57);
+}
