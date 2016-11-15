@@ -35,6 +35,7 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       } else {
         return $http.get('/user').then(function(response) {
           service.currentUser = response.data.user;
+          service.setUserNavRole();
           return service.currentUser;
         });
       }
@@ -65,7 +66,7 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       navView.set("visitor",false);
       navView.set("user",false);
       navView.set("admin",false);
-      var sRole = service.currentUser.role;
+      var sRole = (service.currentUser||false)? service.currentUser.role||'visitor':'visitor';
       if(sRole==="ADMIN") {
         navView.set("admin",true);
       } else if(sRole==="USER") {
@@ -81,4 +82,8 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
 
   };
   return service;
-});
+})
+
+xyzabc.run(['authService', function(authService) {
+  authService.requestCurrentUser();
+}]);
