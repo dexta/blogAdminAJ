@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var config = require('./config.js');
 
 var db = {};
-
+if(!config.nullSql) {
 db.connection = mysql.createConnection({
   host     : config.database.host,
   user     : config.database.user,
@@ -10,6 +10,8 @@ db.connection = mysql.createConnection({
   database : config.database.db
 });
 db.connection.connect();
+}
+
 db.testDatabase = function testDatabase(){
   db.connection.query('SELECT * FROM user LIMIT 1', function(err, rows, fields) {
     if (err) throw err;
