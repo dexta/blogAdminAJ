@@ -10,7 +10,11 @@
   </div>
   <div class="col-lg-3" style="min-height:400px" ng-show="showImages">
     <h2>Bilder</h2>
-    <p class="input-group">
+    
+  </div>
+  <div class="col-lg-3" style="min-height:400px" ng-show="showOptions">
+    <h3>Options</h3>
+     <p class="input-group">
       <input  type="text" class="form-control" 
               datetime-picker="dd MMM yyyy - HH:mm:ss"
               timepicker-options="timepickerOptions"
@@ -18,19 +22,6 @@
               ng-model="myDate" is-open="isOpen"  />
       <span class="input-group-btn">
           <button type="button" class="btn btn-default" ng-click="openCalendar($event, prop)"><i class="fa fa-calendar"></i></button>
-      </span>
-    </p>
-  </div>
-  <div class="col-lg-3" style="min-height:400px" ng-show="showOptions">
-    <h3>Options</h3>
-     <p class="input-group">
-      <input  type="text" class="form-control" uib-datepicker-popup ng-model="dateRelease.date" 
-              is-open="dateRelease.opened" datepicker-options="dateOptions"
-              ng-required="true" close-text="Close" 
-              datepicker-popup-template-url="./uib/template/datepicker/popup.html"
-               />
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="dateReleaseOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </p>
   </div>  
