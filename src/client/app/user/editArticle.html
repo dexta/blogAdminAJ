@@ -10,7 +10,15 @@
   </div>
   <div class="col-lg-3" style="min-height:400px" ng-show="showImages">
     <h2>Bilder</h2>
-    
+    <input type="file" file-upload multiple/>
+    <ul>
+        <li ng-repeat="file in files">{{file.name}}</li>
+    </ul>
+    <button class="btn btn-default" ng-click="save()">Upload Images</button>
+    <br>
+
+    <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+
   </div>
   <div class="col-lg-3" style="min-height:400px" ng-show="showOptions">
     <h3>Options</h3>

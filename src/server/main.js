@@ -14,6 +14,9 @@ var router = express();
 var Pass = require('./passport.js');
 var pass = new Pass(router,db);
 
+var fileUpload = require('./upload.js');
+var upload = new fileUpload(router,db);
+
 router.staticFiles = function staticFiles(staticPath) {
   router.use(express.static(path.resolve(staticPath)));
 };
