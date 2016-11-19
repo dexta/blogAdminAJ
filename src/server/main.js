@@ -7,7 +7,6 @@ var config = require('./config.js');
 config.lang = 'de';
 var db = require('./mysqlServer.js');
 
-
 var express = require('express');
 var router = express();
 
@@ -17,9 +16,17 @@ var pass = new Pass(router,db);
 var fileUpload = require('./upload.js');
 var upload = new fileUpload(router,db);
 
+var userAgent = require('./userAgent.js');
+var userService = new userAgent(db);
+
 router.staticFiles = function staticFiles(staticPath) {
   router.use(express.static(path.resolve(staticPath)));
 };
+
+router.post('/',
+  function(req,res) {
+    res.send('Wrong Way !!!1!!1!!');
+});
 
 router.post('/loginLocal',
   pass.port.authenticate('local'),
@@ -58,6 +65,12 @@ router.get('/get/series/seen',
   });  
 });
 
-// db.testDatabase();
+router.post('/addUser',
+  pass.port.ensureAuthenticated,
+    function(req,res) {
+      userService.addUser(req.body,function(re) {
+        res.send(re);
+      });
+});
 
 module.exports = router;

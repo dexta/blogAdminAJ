@@ -3,7 +3,7 @@ var config = {};
 config.server = {port:9005,ip:'0.0.0.0'};
 
 config.database = {host:'localhost',db:'blogadmin',user:'blogadmin',pass:'blogadmin'};
-config.nullSql = true;
+config.nullSql = false;
 config.nullSQLDB = {};
 config.nullSQLDB.user = {
   "bob": {

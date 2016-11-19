@@ -36,8 +36,10 @@ module.exports = function(router,db) {
   this.port.use(new this.localStrategy(
     function(username, password, cb) {     
       db.getUser(username,function(user) {
-        if( bcrypt.compareSync(password, user.password) ) {
-          return cb(null, user);
+        console.log("user: "+user[0].name+" || password: "+password+" userLen: "+user.length);
+        console.dir(user[0]);
+        if( bcrypt.compareSync(password, user[0].password) ) {
+          return cb(null, user[0]);
         }
         return cb(null,false);
       });
