@@ -2,6 +2,8 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
   var service = {
     // Information about the current user
     currentUser: null,
+    msg: '',
+    error: '',
 
     login: function(credentials) {
       var login = $http({
@@ -41,6 +43,21 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       }
     },
 
+    addUser: function(newUser) {
+      var aUser = $http({
+        method  :   'POST',
+        url     :   '/addUser',
+        data    :   newUser,
+        headers :   {'Content-Type': 'application/x-www-form-urlencoded'},
+      });
+      aUser.success(function(data) {
+        service.msg = data;
+      }).error(function(error) {
+        service.error = error.error ? error.error : error;
+      });
+      return aUser;      
+    },
+
     // Is the current user authenticated?
     isAuthenticated: function() {
       return !!service.currentUser;
@@ -67,9 +84,9 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       navView.set("user",false);
       navView.set("admin",false);
       var sRole = (service.currentUser||false)? service.currentUser.role||'visitor':'visitor';
-      if(sRole==="ADMIN") {
+      if(sRole==="admin") {
         navView.set("admin",true);
-      } else if(sRole==="USER") {
+      } else if(sRole==="user") {
         navView.set("user",true);
       } else {
         navView.set("visitor",true);

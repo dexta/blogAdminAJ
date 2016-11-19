@@ -12,6 +12,10 @@ xyzabc.config(function($routeProvider) {
       templateUrl : 'app/auth/auth.html',
       controller  : 'authController'
     })
+    .when('/addUser', {
+      templateUrl : 'app/admin/addUser.html',
+      controller  : 'addUserController'
+    })    
     .when('/editArticle', {
       templateUrl : 'app/user/editArticle.html',
       controller  : 'editArticleController'
