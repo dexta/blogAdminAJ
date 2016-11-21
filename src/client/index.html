@@ -11,6 +11,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/customStyle.css" rel="stylesheet">
     <link href="css/textAngular.css" rel="stylesheet">
+    <link href="css/xeditable.css" rel="stylesheet">
   </head>
   <body ng-app="xyzabc">
     <div class="container">
@@ -56,7 +57,7 @@
                 </a>
                 <ul class="dropdown-menu" uib-collapse="isAdminMenuCollapsed" ng-click="openCloseMenu('admin')">
                   <li><a href="#/addUser">neu</a></li>
-                  <li><a href="#/">anzeigen</a></li>
+                  <li><a href="#/viewUser">anzeigen</a></li>
                   <li><a href="#/"></a></li>
                   <li role="separator" class="divider"></li>
                   <li class="dropdown-header">Verwalten</li>
@@ -67,8 +68,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li ng-show="navShow('visitor')" class="list-group-item-success"><a href="#/auth">Besucher</a></li>
-              <li ng-show="navShow('user')" class="list-group-item-info"><a >Benutzer</a></li>
-              <li ng-show="navShow('admin')" class="list-group-item-danger"><a >Verwalter</a></li>
+              <li ng-show="navShow('user')" class="list-group-item-info"><a href="#/auth">Benutzer</a></li>
+              <li ng-show="navShow('admin')" class="list-group-item-danger"><a href="#/auth">Verwalter</a></li>
               
             </ul>
           </div><!--/.nav-collapse -->
@@ -93,17 +94,20 @@
     <script src="./js/textAngular-rangy.min.js"></script>
     <script src="./js/textAngular-sanitize.min.js"></script>
     <script src="./js/textAngular.min.js"></script>
+    <script src="./js/xeditable.min.js"></script>
 
     <script src="./app/root.js"></script>
     <script src="./app/route.js"></script>
     <script src="./app/services/navService.js"></script>
     <script src="./app/services/authService.js"></script>
+    <script src="./app/services/userService.js"></script>
 
     <script src="./app/default/defaultController.js"></script>
     <script src="./app/nav/navController.js"></script>
     <script src="./app/auth/authController.js"></script>
     <script src="./app/user/editArticleController.js"></script>
     <script src="./app/admin/addUserController.js"></script>
+    <script src="./app/admin/viewUserController.js"></script>
     <!-- // <script src="./app/auth/authController.js"></script> -->
     
     

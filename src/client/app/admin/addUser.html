@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-sm-5">
+<div class="row" ng-show="navShow('admin')">
+  <div class="col-lg-5">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2>{{pageTitle}}</h2>
@@ -9,18 +9,39 @@
       <div class="panel-body">
         <!-- <form role="form" action="" method="post" class="registration-form"> -->
           <div class="form-group">
-           <input type="text" name="form-name" placeholder="Name..." class="form-name form-control" ng-model="newUser.name">
+           <div ng-class="{'has-error': errors.name}">
+            <input type="text" name="form-name" placeholder="Name..." class="form-name form-control" ng-model="newUser.name">
+            <p class="help-block" ng-model="errors.name" ng-show="errors.name">Please enter a name</p>
+           </div>
           </div>
           <div class="form-group">
+           <div ng-class="{'has-error': errors.email||errors.emailDup}">
             <input type="email" name="form-email" placeholder="Email..." class="form-email form-control" 
                     ng-model="newUser.email" required>
+            <p class="help-block" ng-model="errors.email" ng-show="errors.email">this is not the mail iam looking for</p>
+            <p ng-show="errors.emailDup" class="help-block" ng-model="errors.emailDup">email already registered</p>
+           </div>
           </div>
           <div class="form-group">
+           <div ng-class="{'has-error': errors.password}">
             <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" ng-model="newUser.password">
+            <p class="help-block" ng-model="errors.password" ng-show="errors.password">thats not enough</p>
+           </div>
+          </div>
+          <div ng-class="{'has-error': errors.emailDup}" class="has-error">
+            <p ng-show="startFade" ng-class="{'fadeOut2': startFade}" class="fade100">{{success[0].msg}}</p>
+            <p class="help-block" ng-show="errors.sqlError"></p>
           </div>
           <button ng-click="addUser(newUser)" class="btn btn-success btn-block">Add User!</button>
         <!-- </form> -->
       </div>
     </div>
+  </div>
+</div>
+
+<div ng-hide="navShow('admin')">
+  <div class="jumbotron">
+    <h3>Please log in with Admin access</h3>
+    <p>you can login <a href="/#/auth">here</a></p>
   </div>
 </div>

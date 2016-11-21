@@ -1,4 +1,4 @@
-var xyzabc = angular.module('xyzabc',['ngRoute','ui.bootstrap','ui.bootstrap.datetimepicker','textAngular'])
+var xyzabc = angular.module('xyzabc',['ngRoute','ui.bootstrap','ui.bootstrap.datetimepicker','textAngular','xeditable'])
 
 .config(function($provide) {
   $provide.decorator('taOptions',['$delegate', function(taOptions){
@@ -8,4 +8,8 @@ var xyzabc = angular.module('xyzabc',['ngRoute','ui.bootstrap','ui.bootstrap.dat
       // console.dir(taOptions);
     return taOptions;
   }]);
+})
+
+.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
 });

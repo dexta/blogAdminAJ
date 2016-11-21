@@ -1,4 +1,4 @@
-xyzabc.controller('authController', function($scope, $location, authService){
+xyzabc.controller('authController', function($scope, $location, navView, authService){
   $scope.showLogin = true;
   $scope.showSignUp = false;
   $scope.showLogout = false;

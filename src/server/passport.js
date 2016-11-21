@@ -22,7 +22,6 @@ module.exports = function(router,db) {
           // queryStr += 'SELECT LAST_INSERT_ID();';
           db.query(queryStr,function(rows){
             if( (rows||false) ) { 
-              console.log("insert user "+usu.displayName+ " for "+usu.provider+" with id "+usu.id);
               profile.sqlId = rows.insertId;
               return cb(null,profile);
             }
@@ -36,8 +35,8 @@ module.exports = function(router,db) {
   this.port.use(new this.localStrategy(
     function(username, password, cb) {     
       db.getUser(username,function(user) {
-        console.log("user: "+user[0].name+" || password: "+password+" userLen: "+user.length);
-        console.dir(user[0]);
+        if(!user[0]||false) return cb(null,false);
+        // console.log("user: "+user[0].name+" || password: "+password+" userLen: "+user.length);
         if( bcrypt.compareSync(password, user[0].password) ) {
           return cb(null, user[0]);
         }
@@ -54,9 +53,13 @@ module.exports = function(router,db) {
   });
 
   this.port.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
-    console.log("is Auth "+req.isAuthenticated());
     if (req.isAuthenticated()) { return next(null); }
     res.redirect('/error');
+  };
+
+  this.port.isAdmin = function isAdmin(req,res,next) {
+    if (req.isAuthenticated() && req.user.role==='admin') { return next(null); }
+    res.redirect('/#/error');
   };
 
   this.port.getUserIfThere = function getUserIfThere(req, res, next) {

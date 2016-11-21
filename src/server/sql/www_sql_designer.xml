@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="460" y="304" name="User">
+</datatypes><table x="376" y="65" name="User">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -53,14 +53,54 @@
 <row name="role" null="0" autoincrement="0">
 <datatype>VARCHAR(23)</datatype>
 <default>'nobody'</default></row>
+<row name="Lang" null="0" autoincrement="0">
+<datatype>VARCHAR(123)</datatype>
+<default>'en-EN,'</default></row>
+<row name="Active" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="937" y="563" name="new table">
+<table x="1216" y="150" name="Article">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="Title" null="0" autoincrement="0">
+<datatype>VARCHAR(123)</datatype>
+<default>'Default Title'</default></row>
+<row name="Text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>'some text here !!'</default></row>
+<row name="Lang" null="0" autoincrement="0">
+<datatype>VARCHAR(5)</datatype>
+<default>'en-EN'</default></row>
+<row name="Master_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<row name="Date" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>1479653700 </default></row>
+<row name="Live" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="817" y="345" name="whoHasEdit">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="User_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default><relation table="User" row="id" />
+</row>
+<row name="Article_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default><relation table="Article" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

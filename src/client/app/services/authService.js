@@ -43,21 +43,6 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       }
     },
 
-    addUser: function(newUser) {
-      var aUser = $http({
-        method  :   'POST',
-        url     :   '/addUser',
-        data    :   newUser,
-        headers :   {'Content-Type': 'application/x-www-form-urlencoded'},
-      });
-      aUser.success(function(data) {
-        service.msg = data;
-      }).error(function(error) {
-        service.error = error.error ? error.error : error;
-      });
-      return aUser;      
-    },
-
     // Is the current user authenticated?
     isAuthenticated: function() {
       return !!service.currentUser;
@@ -91,10 +76,11 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       } else {
         navView.set("visitor",true);
       }
+      navView.hasLast();
     },
 
     isAdmin: function() {
-      return service.isAuthenticated() && (service.currentUser.role === "ADMIN");
+      return service.isAuthenticated() && (service.currentUser.role === "admin");
     }
 
   };
