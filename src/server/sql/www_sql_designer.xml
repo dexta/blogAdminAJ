@@ -105,4 +105,25 @@
 <part>id</part>
 </key>
 </table>
+<table x="804" y="667" name="newPassword">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Token" null="0" autoincrement="0">
+<datatype>VARCHAR(62)</datatype>
+<default>'abcxyz'</default></row>
+<row name="Date" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>1479653700</default></row>
+<row name="User_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default><relation table="User" row="id" />
+</row>
+<row name="email" null="0" autoincrement="0">
+<datatype>VARCHAR(142)</datatype>
+<default>'user@excample.com'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
 </sql>

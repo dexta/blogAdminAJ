@@ -38,7 +38,16 @@ CREATE TABLE `whoHasEdit` (
   PRIMARY KEY (`id`)
 );
 
-
+DROP TABLE IF EXISTS `newPassword`;
+    
+CREATE TABLE `newPassword` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `Token` VARCHAR(62) NOT NULL DEFAULT 'abcxyz',
+  `Date` INTEGER NOT NULL DEFAULT 1479653700,
+  `User_id` INTEGER NOT NULL DEFAULT 0,
+  `email` VARCHAR(142) NOT NULL DEFAULT 'user@excample.com',
+  PRIMARY KEY (`id`)
+);
 
 insert into User (name,email,password,role,Lang,Active) values('bob','bob@bob.bob','$2a$10$A5FQiqGLANY8zf7MiiceteivbK5B2Uk0lRatifL4gSu9BE/dUykQ2','admin','en-EN,de-DE',1);
 
