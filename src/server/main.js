@@ -16,6 +16,20 @@ var expressValidator = require('express-validator');
 router.use(bodyParser.json());
 router.use(expressValidator([]));
 
+var smtpConfig = {
+    host: config.smtp.host,
+    port: 587,
+    auth: {
+        user: config.smtp.email,
+        pass: config.smtp.pass
+    }
+};
+
+
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+var transporter = nodemailer.createTransport(smtpTransport(smtpConfig));
+
 var Pass = require('./passport.js');
 var pass = new Pass(router,db);
 
@@ -33,6 +47,25 @@ router.post('/',
   function(req,res) {
     res.send('Wrong Way !!!1!!1!!');
 });
+
+router.get('/testMail',
+  function(req,res) {
+    var mailOptions = {
+      from: '"Password Reset" <not-here@zazer.de>', // sender address
+      to: 'dexta.de@gmail.com, root@dexta.de', // list of receivers
+      subject: 'Hello dexta ✔', // Subject line
+      text: 'Hello world ? we send in plain Text', // plaintext body
+      html: '<b>Hello world ?</b><br><h1>dexta was here !1</h1>'+(new Date()) // html body
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        return console.log(error);
+      }
+      res.send(info.response)
+    });
+    // setTimeout(function(){return res.send('Timeout');},1000);
+});
+
 
 router.post('/loginLocal',
   pass.port.authenticate('local'),
