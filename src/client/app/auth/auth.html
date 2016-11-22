@@ -11,7 +11,7 @@
           <i class="fa fa-key"></i>
         </div>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" ng-show="!showPassword">
         <form role="form" name="loginForm" ng-submit="logInto()">
           <div class="form-group">
             <label class="sr-only" for="username">Username</label>
@@ -24,7 +24,16 @@
                    ng-model="formLogin.password">
           </div>
           <button type="submit" class="btn btn-success btn-block">Sign in!</button>
+          <a class="pull-right" ng-click="showPassword=true">Forgot Password?</a>
         </form>
+      </div>
+      <div class="panel-body" ng-show="showPassword">
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input type="text" name="resetEmail" id="resetEmail" class="form-control" placeholder="Email..."
+                  ng-model="reset.email" autofocus >
+        </div>
+        <button class="btn btn-success btn-block">send Reset Password Email</button>
       </div>
     </div> 
   </div>
