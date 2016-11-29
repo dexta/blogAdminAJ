@@ -1,3 +1,4 @@
 node_modules/
 src/server/uploads/
 src/server/config.js
+src/client/img/
