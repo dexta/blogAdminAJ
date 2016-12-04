@@ -5,6 +5,10 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
     msg: '',
     error: '',
 
+    jsonToPa: function(jObj) {
+      return Object.keys(jObj).reduce(function(a,k){a.push(k+'='+jObj[k]);return a},[]).join('&');
+    },
+
     login: function(credentials) {
       var login = $http({
         method  :   'POST',
@@ -28,6 +32,22 @@ xyzabc.factory('authService', function($http, $q, $location, navView) {
       });
       return logout;
     },
+
+    resetPassword: function(resetMail,successCallback,errorCallback) {
+      var rePwd = $http.post({
+        method  :   'POST',
+        url     :   '/resetPassword',
+        data    :   resetMail,
+        headers :   {'Content-Type': 'application/x-www-form-urlencoded'},
+      });
+      rePwd.success(function(data, status, headers, config) {
+        successCallback(data);
+      }).error(function(error, status, headers, config) {
+        errorCallback(error);
+      });
+      return rePwd;
+    },
+
 
     // Ask the backend to see if a user is already authenticated -
     // this may be from a previous session.

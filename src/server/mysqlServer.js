@@ -34,7 +34,7 @@ db.getUser = function getUser(username,callback) {
     console.dir(config.nullSQLDB.user[username]);
     callback(config.nullSQLDB.user[username]);
   } else {
-    var queryStr = "SELECT * FROM User WHERE name = "+ db.connection.escape(username)+" LIMIT 1;";
+    var queryStr = "SELECT * FROM User WHERE email = "+ db.connection.escape(username)+" LIMIT 1;";
     db.query(queryStr,callback);
   }
 };

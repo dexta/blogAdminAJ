@@ -25,7 +25,7 @@ router.post('/addUser',
             // newUser.sqlId = rows.insertId;
             return res.status(200).json([{msg:'new user registed',param:"success",value:rows}]);
           }
-          return cb([{msg:'sql error',param:"sqlError",value:newUser.email}]);
+          return res.status(500).json([{msg:'sql error',param:"sqlError",value:rows}]);
         });
       }
     });
@@ -42,6 +42,19 @@ router.get('/viewUsers',
     });
 
     // res.status(200).json([{name:'a',role:'gott'},{name:'b',role:'gott'}]);
+  });
+
+router.get('/resetPassword',
+  pass.port.isAdmin,
+  function(req,res) {
+    req.checkBody('email').isEmail();
+    req.checkBody('randome').notEmpty();
+    var errors = req.validationErrors();
+    if(errors) {
+      return res.status(500).json(errors);
+    } 
+    
+    
   });
 
 

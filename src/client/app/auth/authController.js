@@ -2,7 +2,8 @@ xyzabc.controller('authController', function($scope, $location, navView, authSer
   $scope.showLogin = true;
   $scope.showSignUp = false;
   $scope.showLogout = false;
-  
+  $scope.resetEmail = '';
+
   function doWhat() {
     var d = $location.search();
     if(d['do']==='signup') {
@@ -34,4 +35,25 @@ xyzabc.controller('authController', function($scope, $location, navView, authSer
      console.log("currentUser "+JSON.stringify(authService.requestCurrentUser()));;
   };
 
+  $scope.resetPassword = function() {
+    var resetStr = "email="+$scope.resetEmail+"&randome=shit";
+    authService.resetPassword(resetStr,
+      function(data){
+        console.dir(data);
+      },
+      function(error){
+        var errors = {};
+        for(var i = 0; i < data.length; i++) {
+            var err = data[i];
+
+            var param, msg;
+            for(var key in err) {
+                if(key === 'param') param = err[key];
+                if(key === 'msg') msg = err[key];
+            }
+            errors[param] = msg;
+        }
+        $scope.errors = errors;
+      });
+  };
 });
